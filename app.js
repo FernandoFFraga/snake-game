@@ -74,10 +74,24 @@ function calculateNextPixel() {
     var y = snake.body[size][1];
 
     if (snake.axis == 1) {
-        x = x + snake.direction;        
+        x = x + snake.direction;    
+        
+        if(x > (canva_width - 1)) {
+            x = 0;
+        } else if(x < 0){
+            x = canva_width - 1;
+        }
+        
     } else {
         y = y + snake.direction;
+
+        if(y > (canva_height - 1)) {
+            y = 0;
+        } else if(y < 0){
+            y = canva_height - 1;
+        }
     }
+
 
     if(validatePixel(x, y)){
         snake.body.push([x, y]);
@@ -96,13 +110,13 @@ function calculateNextPixel() {
 }
 
 function validatePixel(x, y){
-    if(x > (canva_width - 1) || x < 0) {
+    /*if(x > (canva_width - 1) || x < 0) {
         return false;
     }
 
     if(y > (canva_height - 1) || y < 0) {
         return false;
-    }
+    }*/
 
     var target = $("#pixel-"+x+"-"+y).attr('data-status');
     if(target == 1) {
