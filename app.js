@@ -1,5 +1,5 @@
 var canva_height = 30;
-var canva_width  = 30;
+var canva_width  = 51;
 
 var canva_pixels = "";
 var canva_status = [];
@@ -10,7 +10,7 @@ game.end = false;
 game.food = false;
 
 snake = {};
-snake.size = 8;
+snake.size = 4;
 snake.axis = 0; //0 - Vertical, 1 - Horizontal
 snake.direction = -1; //1 - Cima e direita, 0 - Baixo e esquerda
 snake.food = false;
@@ -20,14 +20,10 @@ snake.newDirection = -1;
 snake.directionChanges = false;
 
 snake.body = [
-    [15,22],
-    [15,21],
-    [15,20],
-    [15,19],
-    [15,18],
-    [15,17],
-    [15,16],
-    [15,15],
+    [26,18],
+    [26,17],
+    [26,16],
+    [26,15],
 ]
 
 for (let y = 0; y < canva_height; y++) {
@@ -102,6 +98,7 @@ function calculateNextPixel() {
             snake.body.shift();
         } else {
             snake.size++;
+            $("#score").text(snake.size - 4);
             snake.food = false;
         }
     } else {
