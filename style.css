@@ -1,0 +1,26 @@
+body{
+    background-color: #f1f1f1;
+}
+
+table{
+    background-color: #ccc;
+    border-collapse: collapse;
+}
+
+table td{
+    width: 25px;
+    border: solid 1px transparent;
+    height: 25px;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: transparent;
+}
+
+.food{
+    background-color: red;
+}
+
+.snake{
+    background-color: rgb(53, 173, 79);
+}
