@@ -8,6 +8,7 @@ var game = [];
 game.ready = true;
 game.end = false;
 game.food = false;
+game.speed = 30;
 
 snake = {};
 snake.size = 4;
@@ -179,7 +180,7 @@ $(window).keydown(function(event) {
 
 var isStarted = true;
 function start() {
-    game.loop = setInterval(loop, 50);
+    game.loop = setInterval(loop, game.speed);
 }
 
 function loop(){
