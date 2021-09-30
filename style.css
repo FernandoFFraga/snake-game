@@ -15,21 +15,9 @@ background-image: url("https://www.transparenttextures.com/patterns/inspiration-
     flex-direction: column;
 }
 
-table{
+canvas{
     background-color: #f1f1f1;
-    border-collapse: collapse;
-    padding: 10px;
     border: #fff 10px solid;
-}
-
-table td{
-    width: 12px;
-    border: solid 1px transparent;
-    height: 12px;
-    text-align: center;
-    font-family: sans-serif;
-    font-weight: bold;
-    color: transparent;
 }
 
 .food{

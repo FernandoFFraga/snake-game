@@ -1,5 +1,6 @@
 var canva_height = 30;
 var canva_width  = 51;
+var pixel_size = 15;
 
 var canva_pixels = "";
 var canva_status = [];
@@ -8,7 +9,8 @@ var game = [];
 game.ready = true;
 game.end = false;
 game.food = false;
-game.speed = 30;
+game.speed = 50;
+game.mode = "normal";
 
 snake = {};
 snake.size = 4;
@@ -20,6 +22,8 @@ snake.newAxis = 0;
 snake.newDirection = -1;
 snake.directionChanges = false;
 
+
+
 snake.body = [
     [26,18],
     [26,17],
@@ -28,18 +32,20 @@ snake.body = [
 ]
 
 for (let y = 0; y < canva_height; y++) {
-    canva_pixels += "<tr>";
     canva_status[y] = [];
-
     for (let x = 0; x < canva_width; x++) {
-       canva_pixels += "<td data-status='0' id='pixel-"+x+"-"+y+"'></td>";
        canva_status[y][x] = 0;
     }
-
-    canva_pixels += "</tr>";
 }
 
-$(".canvas").html(canva_pixels);
+$("#viewer").attr("width", canva_width*pixel_size);
+$("#viewer").attr("height", canva_height*pixel_size);
+
+var canvas = document.getElementById("viewer");
+var ctx = canvas.getContext("2d");
+
+ctx.fillStyle = "#F1F1F1";
+ctx.fillRect(0, 0, (canva_width*pixel_size), (canva_height*pixel_size));
 
 
 //Start Snake
@@ -47,21 +53,35 @@ for (let i = 0; i < snake.body.length; i++) {
     updatePixel(snake.body[i][0], snake.body[i][1], 'snake');
 }
 
+var strip = true;
 function updatePixel(x, y, value) {
     if(value == "snake") {
-        $("#pixel-"+x+"-"+y).addClass("snake");
+        if(game.mode == "mengo") {
+            if(strip) {
+                ctx.fillStyle = "red";
+            } else {
+                ctx.fillStyle = "black";
+            }
+        strip = !strip;
+        } else {
+            ctx.fillStyle = "rgb(53, 173, 79)";
+        }
+        
         var sts = 1;
     } else if (value == "food") {
-        $("#pixel-"+x+"-"+y).addClass("food");
+        if(game.mode == "mengo") {
+            ctx.fillStyle = "rgb(53, 173, 79)";
+        } else {
+            ctx.fillStyle = "rgb(182, 42, 42)";
+        }
         var sts = 2;
     } else {
-        $("#pixel-"+x+"-"+y).removeClass("food");
-        $("#pixel-"+x+"-"+y).removeClass("snake");
+        ctx.fillStyle = "#F1F1F1";
         var sts = 0;
     }
 
+    ctx.fillRect((x*pixel_size), (y*pixel_size), pixel_size, pixel_size);
     canva_status[y][x] = sts;
-    $("#pixel-"+x+"-"+y).attr('data-status', sts);
 }
 
 function calculateNextPixel() {
@@ -116,7 +136,7 @@ function validatePixel(x, y){
         return false;
     }*/
 
-    var target = $("#pixel-"+x+"-"+y).attr('data-status');
+    var target = canva_status[y][x];
     if(target == 1) {
         return false;
     } else if(target == 2) {
@@ -221,3 +241,4 @@ function updateDirection(){
         snake.directionChanges = false;
     }
 }
+
