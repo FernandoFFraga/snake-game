@@ -10,7 +10,6 @@ game.ready = true;
 game.end = false;
 game.food = false;
 game.speed = 50;
-game.mode = "normal";
 
 snake = {};
 snake.size = 4;
@@ -21,8 +20,6 @@ snake.food = false;
 snake.newAxis = 0;
 snake.newDirection = -1;
 snake.directionChanges = false;
-
-
 
 snake.body = [
     [26,18],
@@ -53,27 +50,12 @@ for (let i = 0; i < snake.body.length; i++) {
     updatePixel(snake.body[i][0], snake.body[i][1], 'snake');
 }
 
-var strip = true;
 function updatePixel(x, y, value) {
     if(value == "snake") {
-        if(game.mode == "mengo") {
-            if(strip) {
-                ctx.fillStyle = "red";
-            } else {
-                ctx.fillStyle = "black";
-            }
-        strip = !strip;
-        } else {
-            ctx.fillStyle = "rgb(53, 173, 79)";
-        }
-        
+        ctx.fillStyle = "rgb(53, 173, 79)";
         var sts = 1;
     } else if (value == "food") {
-        if(game.mode == "mengo") {
-            ctx.fillStyle = "rgb(53, 173, 79)";
-        } else {
-            ctx.fillStyle = "rgb(182, 42, 42)";
-        }
+        ctx.fillStyle = "rgb(182, 42, 42)";
         var sts = 2;
     } else {
         ctx.fillStyle = "#F1F1F1";
