@@ -9,7 +9,7 @@
 # Objetivo
 O jogo foi desenvolvido com o objetivo puro de diversão e exercício das tecnologias em questão.
 
-# Como joga?
+# Como jogar?
 Baixe o repositório, abra o arquivo index.html, aperte ENTER para começar e utilize as setas para controlar a direção.
 
 # Detalhes de Implementação
